@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Norton 360</string>
+    <string name="dashboard_title">Norton 360</string>
+
+    <!-- Dashboard Status -->
+    <string name="status_excellent">Excellent</string>
+    <string name="status_secure">Secure</string>
+    <string name="status_needs_attention">Needs Attention</string>
+    <string name="status_at_risk">At Risk</string>
+    <string name="status_scan_required">Scan Required</string>
+    <string name="status_device_status">Device Status: %1$s</string>
+    <string name="last_scanned">Last scanned: %1$s</string>
+
+    <!-- Scan -->
+    <string name="scanning_threats">Checking your device for threats…</string>
+    <string name="scanning_wait">Please wait while we scan your categories</string>
+    <string name="scan_now">SCAN NOW</string>
+    <string name="scan_in_progress">Scan in Progress</string>
+    <string name="cancel_scan">CANCEL SCAN</string>
+    <string name="checking_category">Checking %1$s…</string>
+    <string name="initializing">Initializing…</string>
+    <string name="scan_description">Protect your device by running a Smart Scan.</string>
+
+    <!-- Categories & Recommendations -->
+    <string name="action_required">Action Required</string>
+    <string name="security_categories">Security Categories</string>
+    <string name="recommendation_label">Recommendation</string>
+
+    <!-- Category Status -->
+    <string name="cat_status_not_scanned">Not Scanned</string>
+    <string name="cat_status_safe">Safe</string>
+    <string name="cat_status_warning">Warning</string>
+    <string name="cat_status_critical">Critical</string>
+    <string name="cat_status_scanning">Scanning</string>
+
+    <!-- Actions -->
+    <string name="action_update_now">Update Now</string>
+    <string name="action_fix_now">Fix Now</string>
+    <string name="action_connect">Connect</string>
+    <string name="action_review">Review</string>
+
+    <!-- Errors -->
+    <string name="error_fetch_report">Failed to load security report</string>
+    <string name="error_scan_failed">Security scan failed: %1$s</string>
+    <string name="error_generic">Something went wrong. Please try again.</string>
+</resources>
