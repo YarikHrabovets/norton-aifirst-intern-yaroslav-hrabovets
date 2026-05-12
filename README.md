@@ -1,4 +1,4 @@
-# Scam Message Detector Prototype (Norton AI-First Assignment)
+# Security Health Dashboard (Norton AI-First Assignment)
 
 ## Project Overview  
 I chose **Option A: Security Health Dashboard**. This app simulates a Norton 360 style device security experience by displaying an overall security score, category based security checks, and a simulated scan flow with animated progress and scan results.
