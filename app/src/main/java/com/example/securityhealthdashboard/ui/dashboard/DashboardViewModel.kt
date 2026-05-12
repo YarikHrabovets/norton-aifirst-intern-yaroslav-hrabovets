@@ -14,6 +14,17 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Named
 
+/**
+ * ViewModel responsible for the Security Dashboard UI logic.
+ *
+ * It manages the [DashboardUiState], handles the initial data loading,
+ * and coordinates the security scanning process using the provided use cases.
+ *
+ * @property getSecurityReportUseCase Fetches the current security status report.
+ * @property startSecurityScanUseCase Initiates a scan and emits progress updates.
+ * @property ioDispatcher For offloading database or network operations.
+ * @property mainDispatcher For UI-related thread operations.
+ */
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
     private val getSecurityReportUseCase: GetSecurityReportUseCase,
@@ -23,6 +34,10 @@ class DashboardViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(DashboardUiState())
+
+    /**
+     * Public UI state stream that the UI layer observes.
+     */
     val uiState: StateFlow<DashboardUiState> = _uiState.asStateFlow()
 
     private var scanJob: Job? = null
@@ -32,6 +47,9 @@ class DashboardViewModel @Inject constructor(
         loadInitialData()
     }
 
+    /**
+     * Fetches the initial security report from the data source.
+     */
     private fun loadInitialData() {
         viewModelScope.launch(mainDispatcher) {
             _uiState.update { it.copy(error = null) }
@@ -48,6 +66,10 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Starts the security scan process.
+     * Cancels any existing scan job and updates the state to 'Scanning'.
+     */
     fun startScan() {
         val currentReport = _uiState.value.report ?: return
         lastStableReport = currentReport
@@ -93,6 +115,10 @@ class DashboardViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
+    /**
+     * Cancels the scan and hides the scan bottom sheet.
+     * Reverts to the last stable report to ensure UI consistency.
+     */
     fun dismissScanSheet() {
         scanJob?.cancel()
         scanJob = null
@@ -106,10 +132,16 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Clears the current error from the UI state.
+     */
     fun clearError() {
         _uiState.update { it.copy(error = null) }
     }
 
+    /**
+     * Helper to update specific security categories in the UI state while a scan is in progress.
+     */
     private fun updateCategoryInState(updatedCategory: SecurityCategory) {
         val currentReport = _uiState.value.report ?: return
         val newCategories = currentReport.categories.map {
