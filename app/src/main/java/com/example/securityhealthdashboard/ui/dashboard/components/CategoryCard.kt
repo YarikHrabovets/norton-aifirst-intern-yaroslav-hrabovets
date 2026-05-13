@@ -65,14 +65,14 @@ fun CategoryCard(
                     .padding(horizontal = 16.dp)
             ) {
                 Text(
-                    text = category.name,
+                    text = stringResource(category.nameRes),
                     style = MaterialTheme.typography.titleMedium.copy(
                         fontWeight = FontWeight.Bold,
                         color = NortonBlack
                     )
                 )
                 Text(
-                    text = category.detail, // This would ideally be localized too if detail was a type
+                    text = stringResource(category.detailRes),
                     style = MaterialTheme.typography.bodySmall.copy(
                         color = TextGray
                     )

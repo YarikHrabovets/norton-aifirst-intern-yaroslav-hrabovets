@@ -26,6 +26,25 @@
     <string name="security_categories">Security Categories</string>
     <string name="recommendation_label">Recommendation</string>
 
+    <!-- Recommendation Titles -->
+    <string name="rec_update_passwords">Update Weak Passwords</string>
+    <string name="rec_update_os">Update Android OS</string>
+    <string name="rec_enable_vpn">Enable Secure VPN</string>
+
+    <!-- Category Names -->
+    <string name="cat_os_version">OS Version</string>
+    <string name="cat_app_threats">App Threats</string>
+    <string name="cat_wifi_safety">Wi-Fi Safety</string>
+    <string name="cat_password_strength">Password Strength</string>
+    <string name="cat_vpn_status">VPN Status</string>
+    <string name="cat_malware_scan">Malware Scan</string>
+
+    <!-- Category Status Details -->
+    <string name="cat_detail_scan_required">Scan required</string>
+    <string name="cat_detail_no_issues">No issues found</string>
+    <string name="cat_detail_attention">Attention required</string>
+    <string name="cat_detail_critical">Critical risk detected</string>
+
     <!-- Category Status -->
     <string name="cat_status_not_scanned">Not Scanned</string>
     <string name="cat_status_safe">Safe</string>

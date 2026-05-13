@@ -8,5 +8,6 @@ data class DashboardUiState(
     val scanState: ScanState = ScanState.Idle,
     val isFirstScanPerformed: Boolean = false,
     val showScanSheet: Boolean = false,
+    val isLoading: Boolean = false,
     val error: String? = null
 )

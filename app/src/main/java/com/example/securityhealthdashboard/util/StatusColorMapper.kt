@@ -44,4 +44,14 @@ object StatusColorMapper {
             CategoryStatus.Scanning -> R.string.cat_status_scanning
         }
     }
+
+    fun getCategoryDetailRes(status: CategoryStatus): Int {
+        return when (status) {
+            CategoryStatus.NotScanned -> R.string.cat_detail_scan_required
+            CategoryStatus.Safe -> R.string.cat_detail_no_issues
+            CategoryStatus.Warning -> R.string.cat_detail_attention
+            CategoryStatus.Critical -> R.string.cat_detail_critical
+            CategoryStatus.Scanning -> R.string.cat_detail_no_issues // Or a specific scanning detail
+        }
+    }
 }

@@ -7,7 +7,14 @@ The app is built using Kotlin and Jetpack Compose following an MVVM architecture
 
 The scan process is fully simulated and designed to mimic real security checks such as OS version validation, app threat scanning, Wi-Fi safety, password strength evaluation, and VPN status checks.
 
----
+## Scoring Logic
+
+Each security category has an individual score from 0–100. The overall security score is calculated as a simple average of all category scores and mapped to:
+
+- 0–39: At Risk
+- 40–69: Needs Attention
+- 70–89: Secure
+- 90–100: Excellent
 
 ## Setup Instructions  
 - Clone this repository.  
@@ -62,7 +69,7 @@ I used AI-assisted code review to improve production readiness. Based on feedbac
 
 - **Thread Safety:** Ensured all UI state updates happen on `Dispatchers.Main.immediate` to avoid race conditions.  
 - **Localization:** Moved all user-facing strings to `strings.xml` for proper internationalization.  
-- **Dependency Injection:** Refactored manual DI into Hilt-ready architecture using `@HiltViewModel` and `@Inject` constructors.  
+- **Dependency Injection:** Implemented Hilt with `@HiltViewModel`, `@HiltAndroidApp`, `AppModule`, and injected ViewModel dependencies.
 - **Error Handling:** Added try-catch blocks in repository and use cases with UI error state handling to prevent crashes and stuck states.  
 - **Test Improvements:** Extended test coverage to include cancellation, error states, and edge cases in scan flow logic.  
 - **UI Stability:** Fixed scan layout jumps by standardizing container sizing for score components.  
@@ -97,4 +104,4 @@ What I would improve in Norton 360:
 - I would add more failure-mode testing earlier in development instead of after core implementation.  
 
 ## Demo Video  
-Watch on YouTube
+[Demo Link](https://youtu.be/UECGbYYbUVs)

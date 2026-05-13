@@ -18,7 +18,7 @@ import com.example.securityhealthdashboard.ui.theme.TextGray
 @Composable
 fun ScanProgressSheet(
     progress: Float,
-    currentCategory: String?,
+    currentCategoryRes: Int?,
     onCancel: () -> Unit
 ) {
     Surface(
@@ -51,7 +51,7 @@ fun ScanProgressSheet(
             Spacer(modifier = Modifier.height(32.dp))
             
             Text(
-                text = currentCategory?.let { stringResource(R.string.checking_category, it) } 
+                text = currentCategoryRes?.let { stringResource(R.string.checking_category, stringResource(it)) }
                        ?: stringResource(R.string.initializing),
                 style = MaterialTheme.typography.bodyMedium.copy(
                     color = TextGray

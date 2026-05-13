@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.securityhealthdashboard.ui.dashboard.DashboardScreen
+import com.example.securityhealthdashboard.ui.dashboard.DashboardRoute
 import com.example.securityhealthdashboard.ui.dashboard.DashboardViewModel
 
 @Composable
@@ -19,7 +19,7 @@ fun AppNavGraph(
         startDestination = "dashboard"
     ) {
         composable("dashboard") {
-            DashboardScreen(viewModel = viewModel)
+            DashboardRoute(viewModel = viewModel)
         }
         // Add more destinations here later
     }

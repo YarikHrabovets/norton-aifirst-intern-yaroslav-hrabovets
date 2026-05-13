@@ -50,7 +50,7 @@ fun RecommendationBanner(
                     )
                 )
                 Text(
-                    text = recommendation.title,
+                    text = stringResource(recommendation.titleRes),
                     style = MaterialTheme.typography.titleSmall.copy(
                         color = NortonBlack,
                         fontWeight = FontWeight.Bold

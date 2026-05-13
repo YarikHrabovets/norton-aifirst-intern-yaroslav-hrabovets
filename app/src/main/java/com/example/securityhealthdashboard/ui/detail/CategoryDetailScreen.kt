@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 import com.example.securityhealthdashboard.data.model.SecurityCategory
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -17,7 +18,7 @@ fun CategoryDetailScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(category.name) },
+                title = { Text(stringResource(category.nameRes)) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         // Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -32,7 +33,7 @@ fun CategoryDetailScreen(
                 .padding(innerPadding)
                 .padding(16.dp)
         ) {
-            Text(category.detail, style = MaterialTheme.typography.bodyLarge)
+            Text(stringResource(category.detailRes), style = MaterialTheme.typography.bodyLarge)
             // Add more details, history, etc.
         }
     }

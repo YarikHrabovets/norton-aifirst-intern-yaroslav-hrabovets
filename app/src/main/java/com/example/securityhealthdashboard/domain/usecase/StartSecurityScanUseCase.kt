@@ -1,6 +1,8 @@
 package com.example.securityhealthdashboard.domain.usecase
 
 import com.example.securityhealthdashboard.data.model.*
+import com.example.securityhealthdashboard.util.SecurityDisplayMapper
+import com.example.securityhealthdashboard.util.StatusColorMapper
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,7 +14,7 @@ import java.util.Date
  * It iterates through security categories, calculates scores based on simulated logic,
  * and emits progress updates as a [Flow].
  */
-class StartSecurityScanUseCase {
+open class StartSecurityScanUseCase {
 
     /**
      * Executes the scan process.
@@ -20,7 +22,7 @@ class StartSecurityScanUseCase {
      * @param currentReport The initial report state to base the scan on.
      * @return A Flow of [ScanProgressUpdate] indicating the scan status and results.
      */
-    operator fun invoke(currentReport: SecurityReport): Flow<ScanProgressUpdate> = flow {
+    open operator fun invoke(currentReport: SecurityReport): Flow<ScanProgressUpdate> = flow {
         val categories = currentReport.categories
         val total = categories.size
         
@@ -49,14 +51,10 @@ class StartSecurityScanUseCase {
                             else if (newScore < 80) CategoryStatus.Warning 
                             else CategoryStatus.Safe
             
-            val newDetail = if (newScore < 50) "Critical risk detected" 
-                            else if (newScore < 80) "Attention required" 
-                            else "No issues found"
-            
             category.copy(
                 status = newStatus, 
                 score = newScore,
-                detail = newDetail,
+                detailRes = StatusColorMapper.getCategoryDetailRes(newStatus),
                 lastChecked = Date()
             )
         }
@@ -71,10 +69,20 @@ class StartSecurityScanUseCase {
         // Generate recommendations based on the scan findings
         val recommendations = mutableListOf<Recommendation>()
         if (updatedCategories.any { it.type == "PASSWORD_STRENGTH" && it.status == CategoryStatus.Critical }) {
-            recommendations.add(Recommendation("r1", "Update Weak Passwords", Severity.High, "FIX_PASSWORDS"))
+            recommendations.add(Recommendation(
+                id = "r1", 
+                titleRes = SecurityDisplayMapper.getRecommendationTitleRes("FIX_PASSWORDS"),
+                severity = Severity.High, 
+                actionType = "FIX_PASSWORDS"
+            ))
         }
         if (updatedCategories.any { it.type == "OS_VERSION" && it.status == CategoryStatus.Warning }) {
-            recommendations.add(Recommendation("r2", "Update Android OS", Severity.Medium, "UPDATE_OS"))
+            recommendations.add(Recommendation(
+                id = "r2", 
+                titleRes = SecurityDisplayMapper.getRecommendationTitleRes("UPDATE_OS"),
+                severity = Severity.Medium, 
+                actionType = "UPDATE_OS"
+            ))
         }
 
         val finalReport = currentReport.copy(
